@@ -1,0 +1,98 @@
+{% extends 'user_profile.html' %}
+{% block content %}
+<style>
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-top: 20px;
+      
+    }
+    
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    .form-field label {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      font-size: 16px;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      width: 100%;
+    }
+    
+    .form-field textarea {
+      height: 150px;
+      
+    }
+    
+    .save-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    
+    .save-button:hover {
+      background-color: #3e8e41;
+    }
+    </style>
+   
+    <div id="weather">
+     Weather Details: <br>
+    {{weather}}
+    </div>
+    
+    <div class="form-container">
+      <form method="post" action="{% url "tripsuggestions" %}">
+        {% csrf_token %}
+        <div class="form-field">
+          <label for="trip_name">Trip Name: {{trip_name}}</label>
+          <input type="text" value="{{trip_name}}" hidden name="trip_name">
+        </div>
+        <div class="form-field">
+          <label for="destination_name">Destination Name: {{destination_name}}</label>
+          <input type="text" value="{{destination_name}}" hidden name="destination">
+        </div>
+        <div class="form-field">
+          <label for="from_date">From Date: {{from_date}}</label>
+          <input type="date" value="{{from_date}}" hidden name="from_date">
+        </div>
+        <div class="form-field">
+          <label for="duration">Duration:{{duration}}</label>
+          <input type="number" value="{{duration}}" hidden name="duration">
+        </div>
+        <div class="form-field">
+          <label for="trip_type">Trip Type:{{trip_type}}</label>
+          <input type="date" value="{{trip_type}}" hidden name="trip_type">
+        </div>
+        <div class="form-field">
+          <label for="interest">Interest: {{interest}}</label>
+          <input type="text" value="{{interest}}" hidden name="interests">
+        </div>
+        <div class="form-field">
+          <label for="itinerary">Itinerary:</label>
+          <textarea rows="150" cols="150"  id="itinerary" name="itinerary" required>{{itinerary}}</textarea>
+          <input type="text" value="{{itinerary}}" hidden name="itinerary">
+        </div>
+        <input type="submit" value="SAVE" class="save-button">
+      </form>
+    </div>
+    
+    
+{% endblock %}
