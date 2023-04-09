@@ -1,8 +1,0 @@
-<form metod="POST">
-    {% csrf_token %}
-    <input type="text" placeholder="enter location..." name="location" >
-    <input type="submit" value="search">
-</form>
-{% if data %}
-    {{data}}
-{% endif %}
